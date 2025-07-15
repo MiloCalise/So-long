@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:32:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/10 11:40:02 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:05:58 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_player_y(t_map *map)
 		while (map->cases[i][j].c)
 		{
 			if (map->cases[i][j].c == 'P')
-				return (i);
+				return (j);
 			j++;
 		}
 		i++;
@@ -32,35 +32,12 @@ int	get_player_y(t_map *map)
 	return (-1);
 }
 
-void	free_game(t_game *game)
+int	esc_hook(int keycode, t_game *game)
 {
-	if (!game)
-		return ;
-	if (game->map)
-		free_map(game->map);
-	if (game->player)
-		free(game->player);
-	free(game);
-}
-
-void	free_split(char **strs)
-{
-	int	i;
-
-	i = 0;
-	if (!strs)
-		return ;
-	while (strs[i])
-		free(strs[i++]);
-	free(strs);
-}
-
-void	free_rec(char **copy, int i)
-{
-	while (i >= 0)
+	if (keycode == XK_Escape)
 	{
-		free(copy[i]);
-		i--;
+		free_all(game);
+		exit (0);
 	}
-	free(copy);
+	return (0);
 }

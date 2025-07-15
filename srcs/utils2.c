@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:39:14 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/10 12:20:56 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:05:47 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int	get_player_x(t_map *map)
 		while (map->cases[i][j].c)
 		{
 			if (map->cases[i][j].c == 'P')
-				return (j);
+				return (i);
 			j++;
 		}
 		i++;

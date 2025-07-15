@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:23:57 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/10 15:08:02 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/15 16:19:39 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 
-#define KEY_ESC 65307
-
 typedef struct s_image
 {
 	char	c;
@@ -34,16 +32,7 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	void	*img;
 }	t_player;
-
-typedef struct s_data
-{
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_data;
 
 typedef struct s_map
 {
@@ -59,31 +48,55 @@ typedef struct s_game
 	void		*mlx_win;
 	t_map		*map;
 	t_player	*player;
-	t_data		*data;
 }	t_game;
 
-t_image	*char_to_img(char *line);
-t_game	*init_all(char *str);
+t_image		*char_to_img(char *line);
+t_game		*init_all(char *str);
 
-t_image	**import_map(char *str, int height);
+t_image		**import_map(char *str, int height);
 
-void	free_img(t_image **img, int height);
-void	free_game(t_game *game);
-void	free_rec(char **copy, int i);
-void	flood_fill(int x, int y, char **cases, int height);
-void	free_split(char **strs);
-void	free_map(t_map *map);
+void		free_img(t_image **img, int height);
+void		free_game(t_game *game);
+void		free_rec(char **copy, int i);
+void		flood_fill(int x, int y, char **cases, int height);
+void		free_split(char **strs);
+void		free_map(t_map *map);
+void		free_all(t_game *game);
+void		free_imgs(t_game *game);
+void		print_img(t_game *game);
 
-int		check_each(char *str);
-int		char_bin(char c);
-int		get_length(char *str);
-int		get_height(char *str);
-int		check_map(t_image **cases, int *exit, int *player);
-int		get_player_y(t_map *map);
-int		get_player_x(t_map *map);
-int		check_lim(char **str, int height);
-int		check_after(char **str);
+void		*get_img(char c, void *mlx);
 
-char	**fill_char(t_game *game);
+int			check_each(char *str);
+int			do_flood(t_game *game);
+int			char_bin(char c);
+int			get_length(char *str);
+int			get_height(char *str);
+int			check_map(t_image **cases, int *exit, int *player);
+int			get_player_y(t_map *map);
+int			get_player_x(t_map *map);
+int			check_lim(char **str, int height);
+int			check_after(char **str);
+int			esc_hook(int keycode, t_game *game);
+int			close_window(t_game *game);
+int			compare_res(t_game *game, int x, int y);
+int			create_img(t_game *game);
+int			display_img(t_game *game);
+int			dir_a(t_game *game, int *count);
+int			dir_s(t_game *game, int *count);
+int			dir_w(t_game *game, int *count);
+int			dir_d(t_game *game, int *count);
+int			dir_hook(int keycode, t_game *game);
+int			key_hook(int keycode, t_game *game);
+int			reprint_a(t_game *game);
+int			reprint_d(t_game *game);
+int			reprint_w(t_game *game);
+int			reprint_s(t_game *game);
+
+char		**fill_char(t_game *game);
+
+t_map		*get_map(char *str);
+
+t_player	*get_player(t_map *map);
 
 #endif

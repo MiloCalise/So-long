@@ -6,7 +6,7 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/12 13:17:19 by miltavar          #+#    #+#              #
-#    Updated: 2025/07/10 14:09:51 by miltavar         ###   ########.fr        #
+#    Updated: 2025/07/15 15:35:28 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ MLX = mlx/
 AR = ar rcs
 RM = rm -f
 
-SRC = srcs/so_long.c srcs/utils.c srcs/utils2.c srcs/utils3.c srcs/utils4.c
+SRC = srcs/so_long.c srcs/utils.c srcs/utils2.c srcs/utils3.c srcs/utils4.c \
+		srcs/utils5.c srcs/utils6.c srcs/dir_hooks.c srcs/free_utils.c \
+		srcs/reprint.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -34,7 +36,7 @@ MAKE = make -C
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIBS)
-	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft $(MLXFLAGS) -o $(NAME) -no-pie
+	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft $(MLXFLAGS) -o $(NAME) -no-pie -lm
 
 %.o: %.c includes/so_long.h
 	$(CC) $(CFLAGS) -I$(LIBFT) -c $< -o $@

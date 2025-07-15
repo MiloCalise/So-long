@@ -6,26 +6,11 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:18:51 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/10 12:21:44 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:53:22 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void	free_img(t_image **img, int height)
-{
-	int	i;
-
-	i = 0;
-	if (!img)
-		return ;
-	while (i < height)
-	{
-		free(img[i]);
-		i++;
-	}
-	free(img);
-}
 
 t_image	*char_to_img(char *line)
 {
@@ -72,9 +57,20 @@ int	char_bin(char c)
 
 void	free_map(t_map *map)
 {
+	int	i;
+
 	if (!map)
 		return ;
 	if (map->cases)
-		free_img(map->cases, map->height);
+	{
+		i = 0;
+		while (i < map->height)
+		{
+			if (map->cases[i])
+				free(map->cases[i]);
+			i++;
+		}
+		free(map->cases);
+	}
 	free(map);
 }

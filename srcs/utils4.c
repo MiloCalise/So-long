@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:03:16 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/10 11:22:22 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:55:32 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,11 @@ int	check_after(char **str)
 		i++;
 	}
 	return (1);
+}
+
+int	close_window(t_game *game)
+{
+	free_all(game);
+	exit (0);
+	return (0);
 }
