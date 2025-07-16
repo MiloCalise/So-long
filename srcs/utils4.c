@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:03:16 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 14:55:32 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:45:27 by milo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	flood_fill(int x, int y, char **copy, int height)
 	if (copy[y][x] == '1' || copy[y][x] == '3')
 		return ;
 	else if (copy[y][x] == '0' || copy[y][x] == 'C'
-		|| copy[y][x] == 'P' || copy[y][x] == 'E')
+		|| copy[y][x] == 'P' || copy[y][x] == 'E' || copy[y][x] == 'M')
 	{
 		copy[y][x] = '3';
 		flood_fill(x - 1, y, copy, height);

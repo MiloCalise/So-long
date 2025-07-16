@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:49:56 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 15:50:35 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:02:51 by milo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,10 @@ void	*get_img(char c, void *mlx)
 	int		width;
 	int		height;
 
-	img = NULL;
 	width = 64;
 	height = 64;
-	if (c == '1')
-		img = mlx_xpm_file_to_image(mlx,
-			"textures/wall.xpm", &width, &height);
-	else if (c == '0')
-		img = mlx_xpm_file_to_image(mlx,
-			"textures/floor.xpm", &width, &height);
-	else if (c == 'C')
-		img = mlx_xpm_file_to_image(mlx,
-			"textures/item.xpm", &width, &height);
-	else if (c == 'P')
-		img = mlx_xpm_file_to_image(mlx,
-			"textures/player.xpm", &width, &height);
-	else if (c == 'E')
-		img = mlx_xpm_file_to_image(mlx,
-			"textures/exit.xpm", &width, &height);
+	img = NULL;
+	img = img_first(c, mlx, &width, &height);
 	if (width != 64 || height != 64)
 		return (NULL);
 	return (img);

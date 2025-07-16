@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:23:57 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 16:19:39 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:59:58 by milo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ typedef struct s_player
 	int		y;
 }	t_player;
 
+typedef struct s_enemy
+{
+	int		x;
+	int		y;
+}	t_enemy;
+
 typedef struct s_map
 {
 	t_image	**cases;
@@ -48,6 +54,7 @@ typedef struct s_game
 	void		*mlx_win;
 	t_map		*map;
 	t_player	*player;
+	t_enemy		*enemy;
 }	t_game;
 
 t_image		*char_to_img(char *line);
@@ -66,6 +73,8 @@ void		free_imgs(t_game *game);
 void		print_img(t_game *game);
 
 void		*get_img(char c, void *mlx);
+void		*img_first(char c, void *mlx, int *width, int *height);
+void		*img_sec(char c, void *mlx, int *width, int *height);
 
 int			check_each(char *str);
 int			do_flood(t_game *game);
@@ -98,5 +107,7 @@ char		**fill_char(t_game *game);
 t_map		*get_map(char *str);
 
 t_player	*get_player(t_map *map);
+
+t_enemy		*get_enemy(t_game *game);
 
 #endif

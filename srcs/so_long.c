@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:23:42 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 15:13:11 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:40:45 by milo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ t_game	*init_all(char *str)
 	game->player = get_player(game->map);
 	if (!game->player)
 		return (free_game(game), NULL);
+	game->enemy = get_enemy(game);
+	if (!game->enemy)
+		return (free_game(game), NULL);
 	if (do_flood(game) == -1)
 		return (free_game(game), NULL);
 	return (game);
@@ -34,6 +37,7 @@ int	game_init(t_game *game)
 {
 	int	x;
 	int	y;
+
 	x = 0;
 	y = 0;
 	game->mlx = mlx_init();

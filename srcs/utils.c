@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:18:51 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 14:53:22 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:02:48 by milo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_each(char *str)
 
 int	char_bin(char c)
 {
-	if (c == '1' || c == '0' || c == 'P' || c == 'E' || c == 'C')
+	if (c == '1' || c == '0' || c == 'P' || c == 'E' || c == 'C' || c == 'M')
 		return (1);
 	return (0);
 }
@@ -73,4 +73,40 @@ void	free_map(t_map *map)
 		free(map->cases);
 	}
 	free(map);
+}
+
+void	*img_first(char c, void *mlx, int *width, int *height)
+{
+	void	*img;
+
+	img = NULL;
+	if (c == '1')
+		img = mlx_xpm_file_to_image(mlx,
+			"textures/wall.xpm", width, height);
+	else if (c == '0')
+		img = mlx_xpm_file_to_image(mlx,
+			"textures/floor.xpm", width, height);
+	else if (c == 'C')
+		img = mlx_xpm_file_to_image(mlx,
+			"textures/item.xpm", width, height);
+	else if (c == 'P')
+		img = mlx_xpm_file_to_image(mlx,
+			"textures/player.xpm", width, height);
+	else
+			img = img_sec(c, mlx, width, height);
+	return (img);
+}
+
+void	*img_sec(char c, void *mlx, int *width, int *height)
+{
+	void	*img;
+
+	img = NULL;
+	if (c == 'E')
+		img = mlx_xpm_file_to_image(mlx,
+			"textures/exit.xpm", width, height);
+	else if (c == 'M')
+			img = mlx_xpm_file_to_image(mlx,
+			"textures/enemy.xpm", width, height);
+	return (img);
 }

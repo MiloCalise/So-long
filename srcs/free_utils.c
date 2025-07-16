@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 14:21:20 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 14:23:37 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:31:59 by milo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	free_game(t_game *game)
 		free_map(game->map);
 	if (game->player)
 		free(game->player);
+	if (game->enemy)
+		free(game->enemy);
 	free(game);
 	game = NULL;
 }
