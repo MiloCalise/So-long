@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 14:39:14 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/15 15:05:47 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:22:15 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ int	get_length(char *str)
 		return (perror("Error\n"), -1);
 	line = get_next_line(fd);
 	if (!line)
-		return (close(fd), ft_putstr_fd("Error\nGNL failed", 2), -1);
+		return (close(fd), ft_putstr_fd("Error\nGNL failed\n", 2), -1);
 	length = ft_strlen(line);
 	while (line)
 	{
 		if ((size_t)length != ft_strlen(line))
 		{
-			ft_putstr_fd("Error\nMap length incorrect", 2);
+			ft_putstr_fd("Error\nMap length incorrect\n", 2);
 			return (get_next_line(-42), close(fd), free(line), -1);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (length < 5)
-		return (ft_putstr_fd("Error\nMap length incorrect", 2), -1);
+	if (length < 4)
+		return (ft_putstr_fd("Error\nMap length incorrect\n", 2), -1);
 	return (length - 1);
 }
 
@@ -52,14 +52,14 @@ int	get_height(char *str)
 		return (perror("Error\n"), -1);
 	line = get_next_line(fd);
 	if (!line)
-		return (close(fd), ft_putstr_fd("Error\nGNL failed", 2), -1);
+		return (close(fd), ft_putstr_fd("Error\nGNL failed\n", 2), -1);
 	height = 0;
 	while (line)
 	{
 		height++;
 		if (check_each(line) == -1)
 		{
-			ft_putstr_fd("Error\nMap contains forbidden char", 2);
+			ft_putstr_fd("Error\nMap contains forbidden char\n", 2);
 			return (get_next_line(-42), free(line), close(fd), -1);
 		}
 		free(line);
@@ -76,22 +76,23 @@ t_image	**import_map(char *str, int height)
 	char	*line;
 	t_image	**map;
 
-	map = malloc(sizeof(t_image *) * (height + 1));
+	map = malloc_open(&fd, height, str);
 	if (!map)
-		return (ft_putstr_fd("Error\nMalloc failed", 2), NULL);
-	fd = open(str, O_RDONLY);
-	if (fd < 0)
-		return (perror("Error\n"), free_img(map, height), NULL);
+		return (NULL);
 	line = get_next_line(fd);
+	if (!line)
+		return (free(map), close(fd), NULL);
 	i = 0;
 	while (line)
 	{
 		map[i] = char_to_img(line);
 		if (!map[i])
-			return (free_img(map, height), close(fd), NULL);
+			return (free(line), free_img(map, i), close(fd), NULL);
 		i++;
 		free(line);
 		line = get_next_line(fd);
+		if (!line && i < height)
+			return (free_img(map, i), close(fd), NULL);
 	}
 	map[i] = NULL;
 	return (close(fd), map);

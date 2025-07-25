@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 14:21:20 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/16 10:31:59 by milo             ###   ########.fr       */
+/*   Updated: 2025/07/24 10:59:48 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	free_img(t_image **img, int height)
 		return ;
 	while (i < height)
 	{
-		free(img[i]);
+		if (img[i])
+			free(img[i]);
 		i++;
 	}
 	free(img);

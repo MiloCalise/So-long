@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:49:56 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/16 11:02:51 by milo             ###   ########.fr       */
+/*   Updated: 2025/07/23 09:38:50 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	compare_res(t_game *game, int x, int y)
 	int	mapx;
 	int	mapy;
 
-	mapx = game->map->length * 64;
-	mapy = game->map->height * 64;
+	mapx = (game->map->length) * 64;
+	mapy = (game->map->height) * 64;
 	if (mapx > x || mapy > y)
-		return (-1);
+		return (ft_printf("Error\nMap too big\n"), -1);
 	return (1);
 }
 
@@ -36,7 +36,7 @@ int	create_img(t_game *game)
 		while (j < game->map->length)
 		{
 			game->map->cases[i][j].img = get_img(game->map->cases[i][j].c,
-				game->mlx);
+					game->mlx);
 			if (!game->map->cases[i][j].img)
 				return (-1);
 			j++;
@@ -64,7 +64,7 @@ void	*get_img(char c, void *mlx)
 int	display_img(t_game *game)
 {
 	if (create_img(game) == -1)
-		return (free_all(game), -1);
+		return (ft_printf("Error\nCouldn't create imgs\n"), -1);
 	print_img(game);
 	return (1);
 }

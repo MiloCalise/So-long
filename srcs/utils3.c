@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 11:32:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/16 10:30:45 by milo             ###   ########.fr       */
+/*   Updated: 2025/07/23 10:19:43 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,11 @@ t_enemy	*get_enemy(t_game *game)
 	enemy = malloc(sizeof(t_enemy));
 	if (!enemy)
 		return (NULL);
-	if (get_enemy_x(game) == -1)
-		return (free(game->enemy), NULL);
-	if (get_enemy_y(game) == -1)
-		return (free(game->enemy), NULL);
+	enemy->x = get_enemy_x(game);
+	if (enemy->x == -1)
+		return (free(enemy), NULL);
+	enemy->y = get_enemy_y(game);
+	if (enemy->y == -1)
+		return (free(enemy), NULL);
 	return (enemy);
 }

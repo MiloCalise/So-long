@@ -6,7 +6,7 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/12 13:17:19 by miltavar          #+#    #+#              #
-#    Updated: 2025/07/15 15:35:28 by miltavar         ###   ########.fr        #
+#    Updated: 2025/07/23 15:04:17 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ RM = rm -f
 
 SRC = srcs/so_long.c srcs/utils.c srcs/utils2.c srcs/utils3.c srcs/utils4.c \
 		srcs/utils5.c srcs/utils6.c srcs/dir_hooks.c srcs/free_utils.c \
-		srcs/reprint.c
+		srcs/reprint.c srcs/dir_utils.c srcs/enemy_utils.c srcs/count_utils.c \
+		srcs/utils7.c
 
 OBJ = $(SRC:.c=.o)
 

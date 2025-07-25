@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:03:16 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/16 10:45:27 by milo             ###   ########.fr       */
+/*   Updated: 2025/07/17 14:21:18 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	flood_fill(int x, int y, char **copy, int height)
 {
 	int	len;
 
-	len = ft_strlen(copy[y]);
-	if (x < 0 || x >= len || y < 0 || y >= height)
+	len = ft_strlen(copy[x]);
+	if (y < 0 || y >= len || x < 0 || x >= height)
 		return ;
-	if (copy[y][x] == '1' || copy[y][x] == '3')
+	if (copy[x][y] == '1' || copy[x][y] == '3' || copy[x][y] == 'M')
 		return ;
-	else if (copy[y][x] == '0' || copy[y][x] == 'C'
-		|| copy[y][x] == 'P' || copy[y][x] == 'E' || copy[y][x] == 'M')
+	else if (copy[x][y] == '0' || copy[x][y] == 'C'
+		|| copy[x][y] == 'P' || copy[x][y] == 'E')
 	{
-		copy[y][x] = '3';
+		copy[x][y] = '3';
 		flood_fill(x - 1, y, copy, height);
 		flood_fill(x + 1, y, copy, height);
 		flood_fill(x, y - 1, copy, height);
@@ -99,7 +99,8 @@ int	check_after(char **str)
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '1' || str[i][j] == '0' || str[i][j] == '3')
+			if (str[i][j] == '1' || str[i][j] == '0' || str[i][j] == '3'
+				|| str[i][j] == 'M')
 				j++;
 			else
 				return (-1);

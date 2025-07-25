@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: milo <milo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:18:51 by miltavar          #+#    #+#             */
-/*   Updated: 2025/07/16 11:02:48 by milo             ###   ########.fr       */
+/*   Updated: 2025/07/18 16:33:21 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,17 @@ void	*img_first(char c, void *mlx, int *width, int *height)
 	img = NULL;
 	if (c == '1')
 		img = mlx_xpm_file_to_image(mlx,
-			"textures/wall.xpm", width, height);
+				"textures/wall.xpm", width, height);
 	else if (c == '0')
 		img = mlx_xpm_file_to_image(mlx,
-			"textures/floor.xpm", width, height);
+				"textures/floor.xpm", width, height);
 	else if (c == 'C')
 		img = mlx_xpm_file_to_image(mlx,
-			"textures/item.xpm", width, height);
+				"textures/item.xpm", width, height);
 	else if (c == 'P')
 		img = mlx_xpm_file_to_image(mlx,
-			"textures/player.xpm", width, height);
+				"textures/player.xpm", width, height);
 	else
 			img = img_sec(c, mlx, width, height);
-	return (img);
-}
-
-void	*img_sec(char c, void *mlx, int *width, int *height)
-{
-	void	*img;
-
-	img = NULL;
-	if (c == 'E')
-		img = mlx_xpm_file_to_image(mlx,
-			"textures/exit.xpm", width, height);
-	else if (c == 'M')
-			img = mlx_xpm_file_to_image(mlx,
-			"textures/enemy.xpm", width, height);
 	return (img);
 }
